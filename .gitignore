@@ -37,8 +37,7 @@ yarn-error.log*
 __pycache__/
 *.pyc
 
-# draft articles (pending approval)
-posts/drafts/
+# drafts are committed so GitHub Actions can generate them remotely
 
 # vercel
 .vercel

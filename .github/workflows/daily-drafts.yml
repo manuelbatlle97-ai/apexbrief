@@ -1,0 +1,66 @@
+name: Daily Draft Generator
+
+on:
+  schedule:
+    - cron: '0 14 * * *'  # 8:00 AM CST (UTC-6) every day
+  workflow_dispatch:        # Allow manual trigger from GitHub UI
+
+jobs:
+  generate-drafts:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r pipeline/requirements.txt
+
+      - name: Generate draft articles
+        env:
+          NEWS_API_KEY:      ${{ secrets.NEWS_API_KEY }}
+          PEXELS_API_KEY:    ${{ secrets.PEXELS_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          cd pipeline
+          python publish.py --count 1
+
+      - name: Commit drafts
+        run: |
+          git config user.name  "ApexBrief Bot"
+          git config user.email "bot@apexbrief.net"
+          git add posts/drafts/
+          git diff --staged --quiet && echo "No new drafts" || git commit -m "drafts: daily batch $(date +%Y-%m-%d)"
+          git push
+
+      - name: Count new drafts
+        id: count
+        run: |
+          COUNT=$(git diff HEAD~1 --name-only 2>/dev/null | grep "posts/drafts/" | wc -l || echo "5")
+          echo "count=$COUNT" >> $GITHUB_OUTPUT
+
+      - name: Send email notification
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.GMAIL_USER }}
+          password: ${{ secrets.GMAIL_APP_PASSWORD }}
+          subject: "ApexBrief: New drafts ready to review"
+          to: ${{ secrets.GMAIL_USER }}
+          from: ApexBrief Bot
+          body: |
+            New draft articles are ready for your review.
+
+            Steps:
+            1. Open your terminal in the apexbrief folder
+            2. Run: git pull
+            3. Run: cd pipeline && python review_server.py
+            4. Review, approve, and publish at http://localhost:5050
+
+            -- ApexBrief automation
