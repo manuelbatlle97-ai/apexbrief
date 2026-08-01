@@ -45,22 +45,19 @@ jobs:
           echo "count=$COUNT" >> $GITHUB_OUTPUT
 
       - name: Send email notification
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com
-          server_port: 587
-          username: ${{ secrets.GMAIL_USER }}
-          password: ${{ secrets.GMAIL_APP_PASSWORD }}
-          subject: "ApexBrief: New drafts ready to review"
-          to: ${{ secrets.GMAIL_USER }}
-          from: ApexBrief Bot
-          body: |
-            New draft articles are ready for your review.
-
-            Steps:
-            1. Open your terminal in the apexbrief folder
-            2. Run: git pull
-            3. Run: cd pipeline && python review_server.py
-            4. Review, approve, and publish at http://localhost:5050
-
-            -- ApexBrief automation
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+        run: |
+          python - <<'EOF'
+          import os, requests
+          key = os.environ["RESEND_API_KEY"]
+          requests.post("https://api.resend.com/emails", headers={
+            "Authorization": f"Bearer {key}",
+            "Content-Type": "application/json"
+          }, json={
+            "from": "ApexBrief <onboarding@resend.dev>",
+            "to": ["manuel.batlle97@gmail.com"],
+            "subject": "ApexBrief: New drafts ready to review",
+            "text": "New draft articles are ready.\n\n1. Open terminal in apexbrief folder\n2. Double-click review.bat\n3. Approve and publish at http://localhost:5050\n\n-- ApexBrief automation"
+          })
+          EOF
