@@ -1,5 +1,6 @@
 import { getAllPosts } from '@/lib/posts'
 import ArticleCard from '@/components/ArticleCard'
+import ClientImage from '@/components/ClientImage'
 import Link from 'next/link'
 
 export default function HomePage() {
@@ -15,12 +16,7 @@ export default function HomePage() {
           <Link href={`/articles/${featured.slug}`} className="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow border border-gray-100">
             {featured.image ? (
               <div className="aspect-[2/1] overflow-hidden bg-gray-100">
-                <img
-                  src={featured.image}
-                  alt={featured.title}
-                  className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-300"
-                  onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
-                />
+                <ClientImage src={featured.image} alt={featured.title} className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-300" />
               </div>
             ) : (
               <div className="aspect-[2/1] bg-gradient-to-br from-blue-50 to-indigo-100" />

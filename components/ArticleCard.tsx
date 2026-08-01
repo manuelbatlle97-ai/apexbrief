@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { PostMeta } from '@/lib/posts'
+import ClientImage from '@/components/ClientImage'
 
 const CATEGORY_COLORS: Record<string, string> = {
   'Tech & AI':         'bg-violet-100 text-violet-700',
@@ -16,12 +17,7 @@ export default function ArticleCard({ post }: { post: PostMeta }) {
     <article className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100 flex flex-col">
       {post.image ? (
         <div className="aspect-video overflow-hidden bg-gray-100">
-          <img
-            src={post.image}
-            alt={post.title}
-            className="w-full h-full object-cover"
-            onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
-          />
+          <ClientImage src={post.image} alt={post.title} className="w-full h-full object-cover" />
         </div>
       ) : (
         <div className="aspect-video bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">

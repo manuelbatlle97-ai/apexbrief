@@ -1,6 +1,7 @@
 import { getPost, getAllSlugs } from '@/lib/posts'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import ClientImage from '@/components/ClientImage'
 import type { Metadata } from 'next'
 
 const CATEGORY_COLORS: Record<string, string> = {
@@ -59,12 +60,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       {/* Hero image */}
       {post.image && (
         <div className="mb-10 rounded-2xl overflow-hidden aspect-video bg-gray-100">
-          <img
-            src={post.image}
-            alt={post.title}
-            className="w-full h-full object-cover"
-            onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
-          />
+          <ClientImage src={post.image} alt={post.title} className="w-full h-full object-cover" />
         </div>
       )}
 
