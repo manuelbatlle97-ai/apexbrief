@@ -62,6 +62,6 @@ jobs:
             "from": "ApexBrief <onboarding@resend.dev>",
             "to": ["manuel.batlle97@gmail.com"],
             "subject": "ApexBrief: New drafts ready to review",
-            "text": "New draft articles are ready.\n\n1. Open terminal in apexbrief folder\n2. Double-click review.bat\n3. Approve and publish at http://localhost:5050\n\n-- ApexBrief automation"
+            "text": "New draft articles are ready for your review.\n\nTo review them:\n1. Go to your apexbrief folder on your Desktop\n2. Double-click review.bat\n3. A browser will open automatically at localhost:5050\n4. Approve or reject each article, then click Publish\n\nArticles will go live on apexbrief.net within 2 minutes of publishing.\n\n-- ApexBrief automation"
           })
           EOF
