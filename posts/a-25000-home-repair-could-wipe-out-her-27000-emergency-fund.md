@@ -3,7 +3,7 @@ title: "Should You Drain Your Emergency Fund for Home Repairs?"
 date: "2026-08-05"
 category: "Money & Finance"
 excerpt: "A major home repair could deplete an emergency fund entirely, forcing difficult financial choices. Financial experts weigh in on smarter alternatives."
-image: "https://biztoc.com/cdn/304fdb2398bff835_s.webp"
+image: "https://images.pexels.com/photos/18804128/pexels-photo-18804128.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
 keywords: "emergency fund, home repairs, personal finance, financial planning, home maintenance costs, savings strategy, emergency savings, financial decisions"
 ---
 

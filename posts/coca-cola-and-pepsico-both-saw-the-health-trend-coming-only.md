@@ -3,7 +3,7 @@ title: "Coca-Cola vs PepsiCo: Who Won the Health Beverage Race?"
 date: "2026-08-05"
 category: "Health & Wellness"
 excerpt: "Both beverage giants identified the shift toward healthier drinks, but execution determined the winner. One company capitalized on the trend while the other fell behind."
-image: "https://biztoc.com/cdn/780c29a2b8fb7893_s.webp"
+image: "https://images.pexels.com/photos/10068145/pexels-photo-10068145.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
 keywords: "Coca-Cola, PepsiCo, health beverages, sugar-free drinks, consumer trends, KO stock, PEP stock, beverage industry"
 ---
 
