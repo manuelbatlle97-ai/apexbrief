@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 import { getAllPosts, CATEGORIES } from '@/lib/posts'
 
-const BASE_URL = 'https://apexbrief.net'
+const BASE_URL = 'https://www.apexbrief.net'
 const categorySlug = (cat: string) => cat.toLowerCase().replace(/[^a-z0-9]+/g, '-')
 
 export default function sitemap(): MetadataRoute.Sitemap {
